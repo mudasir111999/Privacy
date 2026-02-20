@@ -1,21 +1,61 @@
-<html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy - Autofill Vault</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 16px;line-height:1.6}
+    h1,h2{line-height:1.25}
+    code{background:#f3f4f6;padding:2px 6px;border-radius:6px}
+    .box{background:#f9fafb;border:1px solid #e5e7eb;padding:14px 16px;border-radius:12px}
+    footer{margin-top:40px;font-size:13px;color:#6b7280}
+  </style>
+</head>
 <body>
-<h2>Privacy Policy</h2>
+  <h1>Privacy Policy</h1>
+  <p><strong>Autofill Vault</strong> is a Chrome extension that stores login entries locally in your browser and can autofill login forms.</p>
 
-<p>Autofill Vault stores all login credentials locally in the user's browser.</p>
+  <h2>What data is stored</h2>
+  <div class="box">
+    <ul>
+      <li><strong>Locally (in your browser):</strong> any login entries you create in the extension (label, username, password, notes, and optional site/domain). This data is stored using <code>chrome.storage.local</code>.</li>
+      <li><strong>Not stored on our server:</strong> your saved usernames/passwords are not uploaded to our server.</li>
+    </ul>
+  </div>
 
-<p>No usernames, passwords, or personal login data are transmitted to any external server.</p>
+  <h2>License verification</h2>
+  <p>To unlock premium features, the extension verifies your license with our license server. During verification, the extension sends only:</p>
+  <ul>
+    <li><strong>License key</strong></li>
+    <li><strong>Install ID</strong> (a random identifier created by the extension)</li>
+  </ul>
+  <p>We use this information only to validate licenses and enforce activation limits.</p>
 
-<p>License verification transmits only:</p>
+  <h2>What we do NOT collect</h2>
+  <div class="box">
+    <ul>
+      <li>We do not collect browsing history.</li>
+      <li>We do not collect keystrokes.</li>
+      <li>We do not collect or store your saved passwords on our server.</li>
+      <li>We do not sell or share your personal data.</li>
+    </ul>
+  </div>
 
-<ul>
-<li>License key</li>
-<li>Install ID</li>
-</ul>
+  <h2>Third-party services</h2>
+  <p>The extension may open an external link (for example, WhatsApp chat) if you choose to purchase a license. WhatsApp is a third-party service and is governed by its own privacy policy.</p>
 
-<p>This data is used solely to verify license validity.</p>
+  <h2>Data deletion</h2>
+  <p>You can remove your locally stored data by using the extension’s “Clear All” feature or by uninstalling the extension. Uninstalling removes the local data stored by the extension.</p>
 
-<p>No personal data is sold, shared, or tracked.</p>
+  <h2>Contact</h2>
+  <p>If you have questions about this policy, contact the publisher via the support channel listed on the Chrome Web Store listing.</p>
 
+  <footer>
+    <p>Last updated: <span id="d"></span></p>
+  </footer>
+  <script>
+    document.getElementById("d").textContent = new Date().toISOString().slice(0,10);
+  </script>
 </body>
 </html>

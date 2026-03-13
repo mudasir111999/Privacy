@@ -69,20 +69,32 @@ p{
     <h1>Contact Us</h1>
 
     <p>
-        To buy a license for Autofill Vault Please contact on this number.
+        To buy a license for our product please contact on this number.
     </p>
 
     <div class="number">
         WhatsApp: 03068243870
     </div>
 
-    <a class="whatsapp-btn" 
-       href="https://wa.me/923068243870" 
-       target="_blank">
+    <a class="whatsapp-btn" target="_blank">
        Chat on WhatsApp
     </a>
 
 </div>
+
+<script>
+
+const phoneNumber = "923068243870";
+
+/* Change message here */
+const message = "Hello, I want to buy a license for your product.";
+
+const whatsappURL =
+"https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+
+document.querySelector(".whatsapp-btn").href = whatsappURL;
+
+</script>
 
 </body>
 </html>

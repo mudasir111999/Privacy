@@ -3,237 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Professional Services</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    <title>Autofill Vault Pro | $35 Lifetime</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --whatsapp-green: #25D366;
-            --text-gray: #666;
-            --bg-light: #f4f7f6;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --accent: #38bdf8;
+            --whatsapp: #22c55e;
+            --text: #f8fafc;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--primary-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        .header p {
-            color: var(--text-gray);
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        /* Left Side: Contact Info */
-        .contact-info {
-            background: var(--primary-color);
-            padding: 40px;
-            color: #fff;
-        }
-
-        .contact-info h3 {
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-        }
-
-        .info-item {
+            background-color: var(--bg);
+            color: var(--text);
+            height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Prevents scrolling */
+        }
+
+        .main-card {
+            background: var(--card);
+            width: 90%;
+            max-width: 850px;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        /* Left Side: Product Info */
+        .info-side h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            color: #94a3b8;
+            font-size: 0.95rem;
             margin-bottom: 25px;
         }
 
-        .info-item i {
-            font-size: 1.2rem;
-            margin-right: 15px;
-            color: var(--accent-color);
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
-        /* WhatsApp Specific Styling */
-        .whatsapp-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            border-left: 4px solid var(--whatsapp-green);
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
+        .f-item {
+            display: flex;
             align-items: center;
-            background: var(--whatsapp-green);
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        .f-item i { color: var(--accent); font-size: 14px; }
+
+        /* Right Side: Pricing & CTA */
+        .cta-side {
+            background: rgba(0,0,0,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .price-label { font-size: 0.8rem; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; }
+        .price { font-size: 4rem; font-weight: 800; margin: 10px 0; }
+        .price span { font-size: 1.5rem; vertical-align: super; }
+
+        .wa-btn {
+            background: var(--whatsapp);
             color: white;
-            padding: 12px 20px;
-            border-radius: 5px;
             text-decoration: none;
-            font-weight: 600;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.2s, background 0.2s;
             margin-top: 15px;
-            transition: transform 0.3s ease;
         }
 
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            background: #20ba5a;
+        .wa-btn:hover {
+            transform: translateY(-2px);
+            background: #16a34a;
         }
 
-        .whatsapp-btn i {
-            margin-right: 10px;
-            font-size: 1.4rem;
+        .security-note {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #64748b;
         }
 
-        /* Right Side: Contact Form */
-        .contact-form {
-            padding: 40px;
-        }
+        .security-note i { color: #10b981; margin-right: 5px; }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus, 
-        .form-group textarea:focus {
-            border-color: var(--accent-color);
-        }
-
-        .submit-btn {
-            background: var(--accent-color);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #2980b9;
-        }
-
-        /* Responsive Design */
+        /* Mobile View (if screen is too small) */
         @media (max-width: 768px) {
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                margin: 20px auto;
-            }
+            body { overflow-y: auto; height: auto; padding: 20px 0; }
+            .main-card { grid-template-columns: 1fr; width: 95%; padding: 25px; }
+            .price { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <h1>Get In Touch</h1>
-            <p>Have a question or want to work together? Drop us a message.</p>
-        </div>
-
-        <div class="contact-wrapper">
-            <!-- Contact Details -->
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>contact@yourdomain.com</span>
-                </div>
-
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>123 Business Avenue, City Center</span>
-                </div>
-
-                <!-- WhatsApp Highlight -->
-                <div class="whatsapp-card">
-                    <p>For instant support, chat with us on WhatsApp:</p>
-                    <a href="https://wa.me/923068243870" class="whatsapp-btn" target="_blank">
-                        <i class="fab fa-whatsapp"></i> 0306 8243870
-                    </a>
-                </div>
+    <div class="main-card">
+        <div class="info-side">
+            <h1>Autofill Vault Pro</h1>
+            <p class="description">A lightweight browser extension for secure, one-click login automation with 100% local storage security.</p>
+            
+            <div class="features-grid">
+                <div class="f-item"><i class="fas fa-file-csv"></i> Import from Excel</div>
+                <div class="f-item"><i class="fas fa-filter"></i> Add Unlimited Accounts</div>
+                <div class="f-item"><i class="fas fa-key"></i> Export Accounts to CSV</div>
+                <div class="f-item"><i class="fas fa-search"></i> Advanced Search</div>
+                <div class="f-item"><i class="fas fa-shield-alt"></i> No Data Tracking</div>
+                <div class="f-item"><i class="fas fa-bolt"></i> License Activation</div>
             </div>
 
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <form action="#">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" placeholder="John Doe" required>
-                    </div>
+            <div style="margin-top: 25px; font-size: 0.8rem; color: #64748b;">
+                <p><strong>Privacy First:</strong> Your credentials are stored locally in your browser and never transmitted to our servers.</p>
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="john@example.com" required>
-                    </div>
+        <div class="cta-side">
+            <span class="price-label">Lifetime Pro License</span>
+            <div class="price"><span>$</span>35</div>
+            
+            <a href="https://wa.me/923068243870?text=I%20want%20to%20buy%20Autofill%20Vault%20Pro%20($35)" class="wa-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Buy via WhatsApp
+            </a>
 
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" placeholder="Project Inquiry" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" rows="5" placeholder="How can we help you?" required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+            <div class="security-note">
+                <i class="fas fa-lock"></i> Secure Activation & Support
+                <br>WhatsApp: 0306 8243870
             </div>
         </div>
     </div>

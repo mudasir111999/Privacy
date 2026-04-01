@@ -3,157 +3,260 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Centered Login Mockup</title>
+  <title>Glass Login</title>
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --bg: #030303;
+      --panel: rgba(22, 24, 29, 0.78);
+      --panel-border: rgba(255, 255, 255, 0.10);
+      --input: rgba(132, 136, 149, 0.68);
+      --input-focus: rgba(166, 171, 186, 0.82);
+      --text: rgba(255, 255, 255, 0.94);
+      --muted: rgba(255, 255, 255, 0.74);
+      --shadow: rgba(0, 0, 0, 0.55);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      overflow: hidden;
     }
 
     body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f0f2f5;
-      color: #1c1e21;
+      display: grid;
+      place-items: center;
+      position: relative;
+      color: var(--text);
     }
 
-    .login-wrapper {
+    .bg {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      max-width: 420px;
-      padding: 24px;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      filter: saturate(1.2) brightness(1.02);
     }
 
-    .login-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 32px 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.28;
+      mix-blend-mode: screen;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glow.one {
+      width: 340px;
+      height: 340px;
+      top: 110px;
+      left: 34%;
+      background: radial-gradient(circle at center, rgba(28, 225, 113, 0.55), transparent 72%);
+    }
+
+    .glow.two {
+      width: 330px;
+      height: 330px;
+      top: 260px;
+      left: 48%;
+      background: radial-gradient(circle at center, rgba(41, 84, 255, 0.42), transparent 72%);
+    }
+
+    .panel {
+      position: relative;
+      z-index: 2;
+      width: min(92vw, 320px);
+      min-height: 420px;
+      padding: 94px 24px 34px;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(33, 36, 42, 0.78), rgba(18, 19, 24, 0.84));
+      border: 1px solid var(--panel-border);
+      box-shadow:
+        0 24px 54px var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        inset 0 -12px 24px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(64, 191, 103, 0.18), transparent 28%),
+        radial-gradient(circle at 64% 38%, rgba(34, 70, 255, 0.12), transparent 34%);
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0 0 22px;
       text-align: center;
+      font-weight: 400;
+      font-size: 21px;
+      letter-spacing: 0.2px;
+      position: relative;
+      z-index: 1;
     }
 
-    .brand {
-      font-size: 32px;
-      font-weight: 700;
-      color: #1877f2;
-      margin-bottom: 10px;
-      letter-spacing: -0.5px;
+    form {
+      display: grid;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
     }
 
-    .subtitle {
-      font-size: 16px;
-      color: #606770;
-      margin-bottom: 24px;
-    }
-
-    .input-group {
-      margin-bottom: 14px;
-      text-align: left;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 16px;
-      border: 1px solid #dddfe2;
-      border-radius: 8px;
+    .field {
+      height: 42px;
+      border: 0;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .input-group input:focus {
-      border-color: #1877f2;
-      box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.15);
-    }
-
-    .login-btn {
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      background: #1877f2;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 700;
-      padding: 14px;
-      cursor: pointer;
-      margin-top: 4px;
-    }
-
-    .login-btn:hover {
-      background: #166fe5;
-    }
-
-    .links {
-      margin-top: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .links a {
-      text-decoration: none;
-      color: #1877f2;
+      border-radius: 999px;
+      padding: 0 28px;
+      background: var(--input);
+      color: var(--text);
       font-size: 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .divider {
-      height: 1px;
-      background: #dadde1;
-      margin: 22px 0;
+    .field::placeholder {
+      color: rgba(255,255,255,0.82);
     }
 
-    .create-btn {
-      display: inline-block;
-      text-decoration: none;
-      background: #42b72a;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 700;
-      padding: 12px 18px;
-      border-radius: 8px;
+    .field:focus {
+      background: var(--input-focus);
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 0 0 3px rgba(255,255,255,0.06);
     }
 
-    .notice {
-      margin-top: 16px;
-      font-size: 12px;
-      color: #606770;
-      line-height: 1.5;
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .btn {
+      min-width: 100px;
+      height: 36px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(136, 136, 136, 0.78);
+      color: white;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        0 10px 22px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .panel {
+        min-height: 400px;
+        padding-top: 86px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="login-wrapper">
-    <div class="login-card">
-      <div class="brand">Autofill Vault</div>
-      <div class="subtitle">Sign in to continue</div>
+  <svg class="bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="lineGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="#1f52ff" />
+        <stop offset="56%" stop-color="#0f58ff" />
+        <stop offset="100%" stop-color="#14d46a" />
+      </linearGradient>
+      <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="1.2" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <g id="wave-lines" filter="url(#softGlow)"></g>
+  </svg>
 
-      <form onsubmit="event.preventDefault(); alert('Demo only - no data is sent.');">
-        <div class="input-group">
-          <input type="text" placeholder="Email address or phone number" aria-label="Email address or phone number" />
-        </div>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
 
-        <div class="input-group">
-          <input type="password" placeholder="Password" aria-label="Password" />
-        </div>
-
-        <button class="login-btn" type="submit">Log In</button>
-      </form>
-
-      <div class="links">
-        <a href="#">Forgot password?</a>
+  <section class="panel">
+    <h1>Login</h1>
+    <form>
+      <input class="field" type="text" placeholder="Username" autocomplete="username" />
+      <input class="field" type="password" placeholder="Password" autocomplete="current-password" />
+      <div class="actions">
+        <button class="btn" type="submit">Login</button>
       </div>
+    </form>
+  </section>
 
-      <div class="divider"></div>
+  <script>
+    const group = document.getElementById('wave-lines');
+    const total = 58;
 
-      <a class="create-btn" href="#">Create New Account</a>
+    function pointSet(t) {
+      const p0x = -130 + t * 40;
+      const p0y = 750 - t * 520;
 
-      <div class="notice">
-        
-      </div>
-    </div>
-  </div>
+      const p1x = 265 + t * 26;
+      const p1y = 645 - t * 74;
+
+      const p2x = 560 + t * 72;
+      const p2y = 410 - t * 160;
+
+      const p3x = 835 + t * 38;
+      const p3y = 330 + t * 52;
+
+      const p4x = 1130 - t * 10;
+      const p4y = 378 + t * 26;
+
+      const p5x = 1530 - t * 42;
+      const p5y = 90 + t * 468;
+
+      return { p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y, p4x, p4y, p5x, p5y };
+    }
+
+    for (let i = 0; i < total; i++) {
+      const t = i / (total - 1);
+      const p = pointSet(t);
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      const d = [
+        `M ${p.p0x.toFixed(2)} ${p.p0y.toFixed(2)}`,
+        `C ${p.p1x.toFixed(2)} ${p.p1y.toFixed(2)},`,
+        `${p.p2x.toFixed(2)} ${p.p2y.toFixed(2)},`,
+        `${p.p3x.toFixed(2)} ${p.p3y.toFixed(2)}`,
+        `S ${p.p4x.toFixed(2)} ${p.p4y.toFixed(2)},`,
+        `${p.p5x.toFixed(2)} ${p.p5y.toFixed(2)}`
+      ].join(' ');
+      path.setAttribute('d', d);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', 'url(#lineGradient)');
+      path.setAttribute('stroke-width', '1.6');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('stroke-opacity', (0.55 + t * 0.22).toFixed(2));
+      group.appendChild(path);
+    }
+  </script>
 </body>
 </html>

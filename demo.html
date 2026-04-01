@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centered Login Mockup</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f2f5;
+      color: #1c1e21;
+    }
+
+    .login-wrapper {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+    }
+
+    .login-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      text-align: center;
+    }
+
+    .brand {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1877f2;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #606770;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 1px solid #dddfe2;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: #1877f2;
+      box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.15);
+    }
+
+    .login-btn {
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #1877f2;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 14px;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    .login-btn:hover {
+      background: #166fe5;
+    }
+
+    .links {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: #1877f2;
+      font-size: 14px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #dadde1;
+      margin: 22px 0;
+    }
+
+    .create-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #42b72a;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: 8px;
+    }
+
+    .notice {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #606770;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="brand">Autofill Vault</div>
+      <div class="subtitle">Sign in to continue</div>
+
+      <form onsubmit="event.preventDefault(); alert('Demo only - no data is sent.');">
+        <div class="input-group">
+          <input type="text" placeholder="Email address or phone number" aria-label="Email address or phone number" />
+        </div>
+
+        <div class="input-group">
+          <input type="password" placeholder="Password" aria-label="Password" />
+        </div>
+
+        <button class="login-btn" type="submit">Log In</button>
+      </form>
+
+      <div class="links">
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <div class="divider"></div>
+
+      <a class="create-btn" href="#">Create New Account</a>
+
+      <div class="notice">
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>

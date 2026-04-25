@@ -3,439 +3,656 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing Plans</title>
+  <title>Pricing — Autofill Vault</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Styrene+A+Web:wght@400;500&family=Tiempos+Text:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #1c1c1c;
-      --card: #262522;
-      --card-border: rgba(255,255,255,0.09);
-      --card-border-mid: rgba(255,255,255,0.15);
-      --text: #f0ede8;
-      --muted: #8c8984;
-      --muted-2: #6b6864;
-      --btn-solid: #eeebe6;
-      --btn-solid-text: #18160f;
+      --bg: #f5f4ee;
+      --surface: #fff;
+      --border: #e8e5dd;
+      --text-primary: #1a1a18;
+      --text-secondary: #6b6860;
+      --text-muted: #9b9890;
+      --accent-orange: #d97757;
+      --accent-orange-hover: #c86744;
+      --pro-bg: #1a1a18;
+      --pro-text: #f5f4ee;
+      --pro-border: #2e2d2a;
+      --radius: 16px;
+      --font-sans: 'Styrene A Web', ui-sans-serif, system-ui, sans-serif;
+      --font-serif: 'Tiempos Text', Georgia, serif;
     }
 
     html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100vh;
       background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 0;
     }
 
     /* ── NAV ── */
     nav {
-      width: 100%;
-      height: 52px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      background: #191918;
-      flex-shrink: 0;
+      padding: 0 24px;
+      height: 56px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       text-decoration: none;
-      color: var(--text);
+      color: var(--text-primary);
     }
 
-    .nav-logo-icon {
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(135deg, #3a3733 0%, #2a2825 100%);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(240,237,232,0.85);
-      font-size: 13px;
-    }
+    .nav-logo svg { width: 28px; height: 28px; }
 
     .nav-logo-text {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--text);
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
     }
 
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .nav-btn {
+    .btn-ghost {
       background: none;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: none;
       cursor: pointer;
-      padding: 6px 14px;
+      padding: 7px 14px;
       border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 12.5px;
-      font-weight: 500;
-      color: var(--muted);
-      transition: border-color 0.15s, color 0.15s;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: background 0.15s, color 0.15s;
     }
-    .nav-btn:hover { border-color: rgba(255,255,255,0.22); color: var(--text); }
+    .btn-ghost:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
 
-    /* ── MAIN CONTENT ── */
-    .main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 24px 20px;
-      width: 100%;
-    }
-
-    /* ── TITLE ── */
-    .page-title {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: clamp(22px, 2.6vw, 32px);
-      font-weight: 400;
-      letter-spacing: -0.0em;
-      color: var(--text);
+    /* ── HERO ── */
+    .hero {
       text-align: center;
-      margin-bottom: 28px;
+      padding: 64px 24px 48px;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    /* ── GRID ── */
-    .pricing-grid {
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 4vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── PLAN GRID ── */
+    .plans-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      width: 100%;
-      max-width: 1100px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
     }
 
-    /* ── CARD ── */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
+    .plan-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      gap: 0;
+      position: relative;
+      transition: box-shadow 0.2s;
     }
-    .card.mid { border-color: var(--card-border-mid); }
+    .plan-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
 
-    .card-top {
-      padding: 22px 24px 18px;
+    .plan-card.dark {
+      background: var(--pro-bg);
+      border-color: var(--pro-border);
+      color: var(--pro-text);
     }
 
-    /* Plant SVG */
-    .plant-icon {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 14px;
-      color: rgba(240,237,232,0.85);
+    .plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      background: rgba(217,119,87,0.12);
+      border-radius: 100px;
+      padding: 4px 10px;
+      width: fit-content;
+      margin-bottom: 20px;
     }
 
     .plan-name {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 3px;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
     }
-    .plan-sub {
-      font-size: 12.5px;
-      color: var(--muted);
-      margin-bottom: 16px;
-      line-height: 1.35;
-    }
+    .plan-card.dark .plan-name { color: var(--pro-text); }
 
-    /* Price */
-    .price-row { margin-bottom: 16px; }
-    .price-main {
+    .plan-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 24px;
+      min-height: 42px;
+    }
+    .plan-card.dark .plan-desc { color: #9b9890; }
+
+    .plan-price {
       display: flex;
       align-items: flex-end;
-      gap: 8px;
+      gap: 4px;
+      margin-bottom: 6px;
     }
-    .price-amount {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      color: var(--text);
-    }
-    .price-details {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 2px;
-    }
-    .price-unit  { font-size: 11px; font-weight: 600; color: var(--muted); line-height: 1.3; }
-    .price-billing { font-size: 11px; color: var(--muted-2); line-height: 1.3; }
 
-    /* Buttons */
-    .card-btn {
+    .price-amount {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .plan-card.dark .price-amount { color: var(--pro-text); }
+
+    .price-currency {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    .plan-card.dark .price-currency { color: #9b9890; }
+
+    .price-period {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .plan-card.dark .price-period { color: #6b6860; }
+
+    /* CTA Buttons */
+    .btn-primary {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 6px;
       width: 100%;
-      height: 42px;
+      padding: 11px 20px;
       border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
-      font-weight: 600;
-      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
       border: none;
-      transition: opacity 0.15s, transform 0.1s;
+      transition: background 0.15s, transform 0.1s;
+      text-decoration: none;
+      margin-bottom: 24px;
     }
-    .card-btn:hover  { opacity: 0.86; transform: translateY(-1px); }
-    .card-btn:active { transform: scale(0.99); }
+    .btn-primary:active { transform: scale(0.99); }
 
-    .btn-outline {
+    .btn-orange {
+      background: var(--accent-orange);
+      color: white;
+    }
+    .btn-orange:hover { background: var(--accent-orange-hover); }
+
+    .btn-outline-dark {
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: var(--text);
+      color: var(--pro-text);
+      border: 1px solid #3d3c38;
     }
-    .btn-solid {
-      background: var(--btn-solid);
-      color: var(--btn-solid-text);
+    .btn-outline-dark:hover { background: rgba(255,255,255,0.07); }
+
+    .btn-outline-light {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
     }
+    .btn-outline-light:hover { background: rgba(0,0,0,0.04); }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .btn-whatsapp:hover { background: #1fb855; }
+    .btn-whatsapp svg { width: 16px; height: 16px; fill: currentColor; }
 
     /* Divider */
-    .card-divider {
+    .plan-divider {
+      width: 100%;
       height: 1px;
-      background: rgba(255,255,255,0.07);
-      margin: 0 24px;
+      background: var(--border);
+      margin-bottom: 24px;
     }
+    .plan-card.dark .plan-divider { background: var(--pro-border); }
 
-    /* Features */
-    .card-bottom {
-      padding: 16px 24px 22px;
-      flex: 1;
-    }
-    .features-label {
+    /* Feature list */
+    .features-title {
       font-size: 12px;
-      font-weight: 700;
-      color: var(--text);
-      opacity: 0.9;
-      margin-bottom: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
     }
+    .plan-card.dark .features-title { color: #6b6860; }
+
     .feature-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-    }
-    .feature-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 12.5px;
-      color: #c5c2bc;
-      line-height: 1.4;
-    }
-    .check-icon {
-      flex-shrink: 0;
-      margin-top: 2px;
-      width: 13px;
-      height: 13px;
-      color: #9a9793;
+      gap: 11px;
+      flex: 1;
     }
 
-    /* ── BOTTOM WHATSAPP LINK ── */
-    .bottom-wa {
-      margin-top: 18px;
-      font-size: 12px;
-      color: var(--muted-2);
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .plan-card.dark .feature-item { color: #c0bdb7; }
+
+    .feature-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 16px;
+      height: 16px;
+      color: var(--accent-orange);
+    }
+
+    .feature-icon-check {
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 16px;
+      height: 16px;
+      color: #4caf50;
+    }
+
+    /* ── BANNER ── */
+    .enterprise-banner {
+      max-width: 980px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .enterprise-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .enterprise-left h3 {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+    .enterprise-left p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      max-width: 640px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .faq-section h2 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
       text-align: center;
     }
-    .bottom-wa a {
-      color: var(--muted);
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.15s;
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
     }
-    .bottom-wa a:hover { color: var(--text); }
-    .bottom-wa a i { font-size: 14px; color: #25D366; }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: left;
+      gap: 12px;
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 360px;
+      padding-bottom: 18px;
+    }
+
+    code {
+      background: #ebe9e3;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 12.5px;
+      font-family: ui-monospace, monospace;
+    }
+
+    /* ── FOOTER NOTE ── */
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 0 24px 48px;
+      line-height: 1.6;
+    }
+    .footer-note a { color: var(--text-secondary); text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .plans-grid { grid-template-columns: 1fr; }
+      .enterprise-card { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    /* Subtle entrance animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .plan-card { animation: fadeUp 0.45s ease both; }
+    .plan-card:nth-child(1) { animation-delay: 0.05s; }
+    .plan-card:nth-child(2) { animation-delay: 0.12s; }
+    .plan-card:nth-child(3) { animation-delay: 0.19s; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-<a href="#" class="nav-logo">
-  <div class="nav-logo-icon">
-    <i class="fa-solid fa-vault"></i>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="40" height="40" rx="10" fill="#1a1a18"/>
+      <path d="M12 28l4-10 6 3-4 10-6-3z" fill="#d97757" opacity="0.85"/>
+      <path d="M21 12l5 11-6 3-5-11 6-3z" fill="#f5f4ee"/>
+    </svg>
+    <span class="nav-logo-text">Autofill Vault</span>
+  </a>
+  <div class="nav-right">
+    <a href="https://wa.me/923068243870" target="_blank" class="btn-ghost">Contact</a>
   </div>
-  <span class="nav-logo-text">Autofill Vault</span>
-</a>
-    <div class="nav-right">
-      <a href="https://wa.me/923068243870" target="_blank" style="text-decoration:none">
-        <button class="nav-btn"><i class="fa-brands fa-whatsapp" style="color:#25D366;margin-right:5px"></i>Contact</button>
-      </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Simple, one-time pricing</h1>
+  <p>Use Autofill Vault free for up to 4 entries. Unlock unlimited records with a single payment — no subscriptions, no hidden fees.</p>
+</div>
+
+<!-- PLANS -->
+<div class="plans-grid">
+
+  <!-- FREE -->
+  <div class="plan-card">
+    <div class="plan-name">Free</div>
+    <div class="plan-desc">Perfect for trying the extension and managing a handful of logins.</div>
+    <div class="plan-price">
+      <span class="price-currency">$</span>
+      <span class="price-amount">0</span>
     </div>
-  </nav>
+    <div class="price-period">forever</div>
 
-  <div class="main-content">
+    <button class="btn-primary btn-outline-light">Your current plan</button>
 
-  <h1 class="page-title">Upgrade to make your work easier</h1>
-
-  <div class="pricing-grid">
-
-
-    <!-- ── FREE ── -->
-    <div class="card">
-      <div class="card-top">
-        <svg class="plant-icon" viewBox="0 0 38 38" fill="none">
-          <circle cx="19" cy="9" r="5" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="19" y1="14" x2="19" y2="34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M19 25 Q12 21 11 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          <path d="M19 27 Q26 23 27 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        </svg>
-        <div class="plan-name">Free</div>
-        <div class="plan-sub"></div>
-        <div class="price-row">
-          <div class="price-main"><span class="price-amount">0/-</span></div>
-        </div>
-        <a class="card-btn btn-outline"
-           
-          <i class=""></i> Free
-        </a>
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-bottom">
-        <div class="features-label">Included features:</div>
-        <ul class="feature-list">
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Store up to 4 accounts in vault</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Secure local storage (data stays on your device)</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>One-click autofill on supported websites</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Basic account management (add, edit, delete)</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Site-specific account filtering</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Search saved accounts</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ── PRO ── -->
-    <div class="card mid">
-      <div class="card-top">
-        <svg class="plant-icon" viewBox="0 0 38 38" fill="none">
-          <circle cx="19" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="19" y1="12" x2="19" y2="34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="10" cy="18" r="3" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="13" y1="18" x2="19" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="28" cy="23" r="3" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="25" y1="23" x2="19" y2="24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <div class="plan-name">Pro</div>
-        <div class="plan-sub"></div>
-        <div class="price-row">
-          <div class="price-main">
-            <span class="price-amount">5999/-</span>
-            <div class="price-details">
-              <span class="price-unit">PKR / year</span>
-              <span class="price-billing">yearly subscription</span>
-            </div>
-          </div>
-        </div>
-        <a class="card-btn btn-solid"
-           href="https://wa.me/923068243870?text=Hi%2C%20I%20want%20to%20buy%20Autofill%20Vault%20Pro"
-           target="_blank">
-          <i class="fa-brands fa-whatsapp"></i> Buy on WhatsApp
-        </a>
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-bottom">
-        <div class="features-label">Everything in Free and:</div>
-        <ul class="feature-list">
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited account storage</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Import accounts from CSV / Excel</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Export accounts for backup</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Faster autofill performance</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Priority updates &amp; improvements</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>License activation support</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ── MAX ── -->
-    <div class="card">
-      <div class="card-top">
-        <svg class="plant-icon" viewBox="0 0 38 38" fill="none">
-          <circle cx="19" cy="7" r="3.5" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="19" y1="10.5" x2="19" y2="34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="9.5" cy="16" r="3" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="12.5" y1="16" x2="19" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="28.5" cy="21" r="3" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="25.5" y1="21" x2="19" y2="22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="11" cy="27" r="2.5" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="13.5" y1="27" x2="19" y2="27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <div class="plan-name">Max</div>
-        <div class="plan-sub"></div>
-        <div class="price-row">
-          <div class="price-main">
-            <span class="price-amount">27999/-</span>
-            <div class="price-details">
-              <span class="price-unit">one-time</span>
-              <span class="price-billing">lifetime license</span>
-            </div>
-          </div>
-        </div>
-        <a class="card-btn btn-solid"
-           href="https://wa.me/923068243870?text=Hi%2C%20I%20want%20to%20buy%20Autofill%20Vault%20Max"
-           target="_blank">
-          <i class="fa-brands fa-whatsapp"></i> Buy on WhatsApp
-        </a>
-      </div>
-      <div class="card-divider"></div>
-      <div class="card-bottom">
-        <div class="features-label">Everything in Pro, plus:</div>
-        <ul class="feature-list">
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Lifetime access (one-time payment)</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>All future updates included</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Highest priority support</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Early access to new features</li>
-          <li><svg class="check-icon" viewBox="0 0 13 13" fill="none"><path d="M1.5 6.5l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>No recurring payments ever</li>
-        </ul>
-      </div>
-    </div>
-
+    <div class="plan-divider"></div>
+    <div class="features-title">What's included</div>
+    <ul class="feature-list">
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Up to <strong>4 saved entries</strong>
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        One-click autofill on supported sites
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Dedicated IRIS (FBR) portal workflow
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Local-only storage — nothing uploaded
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Search, import &amp; export
+      </li>
+    </ul>
   </div>
 
-  <!-- Bottom WhatsApp contact line -->
-  <div class="bottom-wa">
-    <a href="https://wa.me/923068243870" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i> Contact on WhatsApp: 0306 8243870
+  <!-- PRO (dark/highlighted) -->
+  <div class="plan-card dark">
+    <div class="plan-badge">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1l1.2 2.5L9 4l-2 1.9.5 2.6L5 7.3 2.5 8.5 3 5.9 1 4l2.8-.5L5 1z" fill="currentColor"/></svg>
+      Most popular
+    </div>
+    <div class="plan-name">Pro</div>
+    <div class="plan-desc">Unlimited entries for one year. Great for individuals who manage many logins.</div>
+    <div class="plan-price">
+      <span class="price-currency" style="color:#9b9890">$</span>
+      <span class="price-amount">25</span>
+    </div>
+    <div class="price-period">one year license</div>
+
+    <a class="btn-primary btn-orange" href="https://wa.me/923068243870?text=Hi%2C%20I%27d%20like%20to%20buy%20an%20Autofill%20Vault%20PRO%20license." target="_blank">Get Pro</a>
+
+    <div class="plan-divider"></div>
+    <div class="features-title">Everything in Free, plus</div>
+    <ul class="feature-list">
+      <li class="feature-item">
+        <svg class="feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <strong>Unlimited saved entries</strong>
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Valid for <strong>1 year</strong> from activation
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Free license transfers on request
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        "Show All Websites" toggle &amp; domain-scoped filtering
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Priority WhatsApp support
+      </li>
+    </ul>
+  </div>
+
+  <!-- MAX -->
+  <div class="plan-card">
+    <div class="plan-name">Max</div>
+    <div class="plan-desc">Pay once, use forever. Best value for long-term users and small offices.</div>
+    <div class="plan-price">
+      <span class="price-currency">$</span>
+      <span class="price-amount">180</span>
+    </div>
+    <div class="price-period">one-time · lifetime license</div>
+
+    <a class="btn-primary btn-orange" href="https://wa.me/923068243870?text=Hi%2C%20I%27d%20like%20to%20buy%20an%20Autofill%20Vault%20MAX%20license." target="_blank">Get Max</a>
+
+    <div class="plan-divider"></div>
+    <div class="features-title">Everything in Pro, plus</div>
+    <ul class="feature-list">
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <strong>Lifetime</strong> — never expires
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        All future feature updates included
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Free license transfers on request
+      </li>
+      <li class="feature-item">
+        <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Priority WhatsApp support
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- BANNER -->
+<div class="enterprise-banner">
+  <div class="enterprise-card">
+    <div class="enterprise-left">
+      <h3>Need a bulk license for your office?</h3>
+      <p>For teams, agencies, and small offices — reach out on WhatsApp and we will put together a license plan that fits.</p>
+    </div>
+    <a href="https://wa.me/923068243870" target="_blank" class="btn-primary btn-whatsapp" style="width:auto;margin:0;padding:10px 20px;">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.6 5.95L0 24l6.3-1.65a11.88 11.88 0 0 0 5.75 1.47h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.17-3.48-8.44zm-8.46 18.3h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.38a9.87 9.87 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.46-4.44 9.9-9.89 9.9z"/>
+        <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+      </svg>
+      Chat on WhatsApp
     </a>
   </div>
+</div>
 
+<!-- FAQ -->
+<div class="faq-section">
+  <h2>Frequently asked questions</h2>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      What's the difference between Pro and Max?
+      <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="faq-answer"><strong>Pro</strong> is a one-time payment that unlocks unlimited entries for one year. <strong>Max</strong> is also a one-time payment, but the license never expires. Both include the same features.</div>
   </div>
 
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      Is my data sent anywhere?
+      <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="faq-answer">No. Your entries — usernames, passwords, notes, CNICs, mobile numbers, IRIS fields — are stored locally in your browser using <code>chrome.storage.local</code>. The only data that leaves your device is the license-verification request, which contains just your license key and a random install ID.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      What happens when my Pro license expires?
+      <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="faq-answer">Your saved entries stay exactly where they are — nothing is deleted. List get blocked but not Export Button so you can get your data by exporting record list. The Free limit of 4 active entries applies again until you renew. You can renew at any time, or upgrade to Max for a lifetime license.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      Can I move my license to a new computer?
+      <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="faq-answer">Yes. Activation on a new computer usually just works. If you run into any issue (for example changing computer, reinstalling chrome, or after reinstalling Windows), message us on WhatsApp with your license key and we will remove license from your previous computer and you will be able to activate it on the new one.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      How do I pay and receive my license?
+      <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="faq-answer">Click <strong>Get Pro</strong> or <strong>Get Max</strong> above — it opens WhatsApp with a pre-filled message. We'll confirm payment options (bank transfer, Easypaisa / JazzCash, or card) and send your license key within a few hours.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+      Do you offer refunds?
+      <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="faq-answer">If the extension doesn't work for your setup within the first 7 days of purchase, contact us on WhatsApp with a short description of the issue and we'll issue a full refund — no questions asked.</div>
+  </div>
+</div>
+
+<div class="footer-note">
+  By purchasing, you agree to our <a href="autofill-vault-legal.html">Terms of Service</a> and <a href="autofill-vault-legal.html">Privacy Policy</a>.<br/>
+  All prices in USD. Local payment methods available on request via WhatsApp.
+</div>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+</script>
 </body>
 </html>

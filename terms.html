@@ -305,14 +305,13 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="40" height="40" rx="10" fill="#1a1a18"/>
       <path d="M12 28l4-10 6 3-4 10-6-3z" fill="#d97757" opacity="0.85"/>
       <path d="M21 12l5 11-6 3-5-11 6-3z" fill="#f5f4ee"/>
     </svg>
     <span class="nav-logo-text">Autofill Vault</span>
   </a>
-  
 </nav>
 
 <!-- TABS -->
@@ -347,7 +346,7 @@
     <li><span class="li-dot"></span><span class="li-text">The free version is limited to a small, fixed number of saved accounts (currently <strong>4 entries</strong>). To store more, a valid license key is required.</span></li>
     <li><span class="li-dot"></span><strong>PRO</strong> licenses are valid for a fixed period (typically one year from the date of activation, unless stated otherwise on purchase).</li>
     <li><span class="li-dot"></span><strong>MAX</strong> licenses are lifetime — they do not expire.</li>
-    <li><span class="li-dot"></span>Each license key supports a configurable number of device slots. A new device automatically claims a free slot; when all slots are in use, the least-recently-used slot may be reclaimed by the publisher on request.</li>
+    <li><span class="li-dot"></span>License keys are intended for personal use. If activation fails on a new computer, contact us on WhatsApp and we will help you transfer your license.</li>
     <li><span class="li-dot"></span>License keys may be reset, reassigned, or revoked at the publisher's discretion in cases of abuse or fraudulent activity.</li>
   </ul>
 
@@ -420,7 +419,7 @@
     <li><span class="li-dot"></span><strong>License key</strong> — the key you entered to activate.</li>
     <li><span class="li-dot"></span><span class="li-text"><strong>Install ID</strong> — a random UUID generated the first time the extension runs on your browser. It is not tied to your name, email, or any other personal identifier.</span></li>
   </ul>
-  <p>We use this information only to validate licenses, track which devices have claimed a slot on a multi-device key, and enforce the per-key device limit. The server returns the license status (valid / expired / disabled), the plan (PRO or MAX), the expiry date (if any), and the number of device slots in use.</p>
+  <p>We use this information only to validate the license tied to your install. The server returns the license status (valid / expired / disabled), the plan (PRO or MAX), and the expiry date (if any).</p>
 
   <h2>What we do NOT collect</h2>
   <div class="box">
@@ -454,7 +453,7 @@
     <li><span class="li-dot"></span><span class="li-text">Delete individual entries with the trash icon next to each record.</span></li>
     <li><span class="li-dot"></span><span class="li-text">Uninstall the extension from <code>chrome://extensions</code> — this removes all locally stored data, including entries, install ID, and license key.</span></li>
   </ul>
-  <p>To release a device slot on a multi-device license (for example, when replacing a computer), contact us via WhatsApp with your license key and we can free the slot on our side.</p>
+  <p>If you need help moving your license to a new computer, contact us via WhatsApp with your license key and we will help.</p>
 
   <p style="margin-top:36px;font-size:12.5px;color:var(--text-muted);">Last updated: <span id="privacy-date"></span></p>
 </div>
@@ -506,7 +505,7 @@
   <h2 style="margin-top:40px;">When you reach out</h2>
   <p>To help us respond faster, please include (when relevant):</p>
   <ul>
-    <li><span class="li-dot"></span>Your <strong>license key</strong> (for activation, reset, or slot-release requests).</li>
+    <li><span class="li-dot"></span>Your <strong>license key</strong> (for activation, reset, or transfer requests).</li>
     <li><span class="li-dot"></span>A short description of the issue, plus the site you were using (e.g. <code>iris.fbr.gov.pk</code>).</li>
     <li><span class="li-dot"></span>A screenshot if you're seeing an error in the extension panel.</li>
   </ul>

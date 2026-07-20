@@ -19,6 +19,7 @@
       --text-muted: #9b9890;
       --accent-orange: #d97757;
       --accent-orange-hover: #c86744;
+      --accent-green: #2fa360;
       --pro-bg: #1a1a18;
       --pro-text: #f5f4ee;
       --pro-border: #2e2d2a;
@@ -89,10 +90,27 @@
     /* ── HERO ── */
     .hero {
       text-align: center;
-      padding: 64px 24px 48px;
-      max-width: 600px;
+      padding: 56px 24px 44px;
+      max-width: 620px;
       margin: 0 auto;
     }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-orange);
+      background: rgba(217,119,87,0.12);
+      border: 1px solid rgba(217,119,87,0.28);
+      border-radius: 100px;
+      padding: 6px 15px 6px 12px;
+      margin-bottom: 22px;
+      animation: fadeUp 0.4s ease both;
+    }
+    .hero-pill svg { width: 14px; height: 14px; }
+    .hero-pill strong { font-weight: 500; color: var(--accent-orange-hover); }
 
     .hero h1 {
       font-family: var(--font-serif);
@@ -172,6 +190,22 @@
     }
     .plan-card.dark .plan-desc { color: #9b9890; }
 
+    /* Free-trial flag on the price */
+    .trial-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent-green);
+      background: rgba(47,163,96,0.12);
+      border-radius: 100px;
+      padding: 4px 11px;
+      width: fit-content;
+      margin-bottom: 14px;
+    }
+    .trial-flag svg { width: 13px; height: 13px; }
+
     .plan-price {
       display: flex;
       align-items: flex-end;
@@ -219,7 +253,7 @@
       border: none;
       transition: background 0.15s, transform 0.1s;
       text-decoration: none;
-      margin-bottom: 24px;
+      margin-bottom: 8px;
     }
     .btn-primary:active { transform: scale(0.99); }
 
@@ -249,6 +283,16 @@
     }
     .btn-whatsapp:hover { background: #1fb855; }
     .btn-whatsapp svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* small helper line under a CTA */
+    .cta-subtext {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .plan-card.dark .cta-subtext { color: #8a877f; }
+    .cta-spacer { margin-bottom: 24px; }
 
     /* Divider */
     .plan-divider {
@@ -302,6 +346,14 @@
       width: 16px;
       height: 16px;
       color: #4caf50;
+    }
+
+    .feature-icon-gift {
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 16px;
+      height: 16px;
+      color: var(--accent-green);
     }
 
     /* ── BANNER ── */
@@ -448,8 +500,12 @@
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-pill">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M8 2l1.6 3.4L13 6l-2.6 2.5.7 3.5L8 10.4 4.9 12l.7-3.5L3 6l3.4-.6L8 2z" fill="currentColor"/></svg>
+    <span>New — start with a <strong>free 30-day Pro trial</strong>, no card required</span>
+  </div>
   <h1>Simple, one-time pricing</h1>
-  <p>Use Autofill Vault free for up to 4 entries. Unlock unlimited records with a single payment — no subscriptions, no hidden fees.</p>
+  <p>Try every Pro feature free for a month. Keep it free forever for up to 4 entries, or unlock unlimited records with a single payment — no subscriptions, no hidden fees.</p>
 </div>
 
 <!-- PLANS -->
@@ -460,12 +516,13 @@
     <div class="plan-name">Free</div>
     <div class="plan-desc">Perfect for trying the extension and managing a handful of logins.</div>
     <div class="plan-price">
-      <span class="price-currency">₨</span>
-      <span class="price-amount">0/-</span>
+      <span class="price-currency">$</span>
+      <span class="price-amount">0</span>
     </div>
     <div class="price-period">forever</div>
 
     <button class="btn-primary btn-outline-light">Your current plan</button>
+    <div class="cta-spacer"></div>
 
     <div class="plan-divider"></div>
     <div class="features-title">What's included</div>
@@ -490,6 +547,10 @@
         <svg class="feature-icon-check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Search &amp; export
       </li>
+      <li class="feature-item">
+        <svg class="feature-icon-gift" viewBox="0 0 16 16" fill="none"><path d="M2.5 6.5h11V13a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1V6.5zM2 4h12v2.5H2V4zm6 0v10M8 4S6.8 2 5.5 2.5 6 4 8 4zm0 0s1.2-2 2.5-1.5S10 4 8 4z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Includes a <strong>30-day free Pro trial</strong>
+      </li>
     </ul>
   </div>
 
@@ -501,17 +562,26 @@
     </div>
     <div class="plan-name">Pro</div>
     <div class="plan-desc">Unlimited entries for one year. Great for individuals who manage many logins.</div>
-<div class="plan-price">
-  <span class="price-currency" style="color:#9b9890">₨</span>
-  <span class="price-amount">6,000/-</span>
-</div>
-    <div class="price-period">one year license</div>
 
-    <a class="btn-primary btn-orange" href="https://wa.me/923068243870?text=Hi%2C%20I%27d%20like%20to%20buy%20an%20Autofill%20Vault%20PRO%20license." target="_blank">Get Pro</a>
+    <div class="trial-flag">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M2.5 6.5h11V13a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1V6.5zM2 4h12v2.5H2V4zm6 0v10M8 4S6.8 2 5.5 2.5 6 4 8 4zm0 0s1.2-2 2.5-1.5S10 4 8 4z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      First 30 days free
+    </div>
+    <div class="plan-price">
+      <span class="price-currency" style="color:#9b9890">$</span>
+      <span class="price-amount">20</span>
+    </div>
+    <div class="price-period">then $20 / year · billed once, no auto-renew</div>
+
+    <a class="btn-primary btn-orange" href="https://wa.me/923068243870?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%2030-day%20Autofill%20Vault%20PRO%20trial." target="_blank">Start free trial</a>
+    <div class="cta-subtext">No card required · cancel anytime</div>
 
     <div class="plan-divider"></div>
     <div class="features-title">Everything in Free, plus</div>
     <ul class="feature-list">
+      <li class="feature-item">
+        <svg class="feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <strong>30-day free trial</strong> of all Pro features
       </li>
       <li class="feature-item">
         <svg class="feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -532,6 +602,7 @@
       <li class="feature-item">
         <svg class="feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         "Show All Websites" toggle &amp; domain-scoped filtering
+      </li>
     </ul>
   </div>
 
@@ -539,13 +610,19 @@
   <div class="plan-card">
     <div class="plan-name">Max</div>
     <div class="plan-desc">Pay once, use forever. Best value for long-term users and small offices.</div>
+
+    <div class="trial-flag">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M2.5 6.5h11V13a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1V6.5zM2 4h12v2.5H2V4zm6 0v10M8 4S6.8 2 5.5 2.5 6 4 8 4zm0 0s1.2-2 2.5-1.5S10 4 8 4z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      First 30 days free
+    </div>
     <div class="plan-price">
-      <span class="price-currency">₨</span>
-      <span class="price-amount">50,000/-</span>
+      <span class="price-currency">$</span>
+      <span class="price-amount">180</span>
     </div>
     <div class="price-period">one-time · lifetime license</div>
 
     <a class="btn-primary btn-orange" href="https://wa.me/923068243870?text=Hi%2C%20I%27d%20like%20to%20buy%20an%20Autofill%20Vault%20MAX%20license." target="_blank">Get Max</a>
+    <div class="cta-subtext">Or start the free trial first — upgrade anytime</div>
 
     <div class="plan-divider"></div>
     <div class="features-title">Everything in Pro, plus</div>
@@ -594,10 +671,18 @@
 
   <div class="faq-item">
     <button class="faq-question" onclick="toggleFaq(this)">
+      How does the free 30-day trial work?
+      <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="faq-answer">When you install Autofill Vault you get every Pro feature — unlimited entries, excel/csv import, domain filtering — free for 30 days. You will be given a free license key to start, and nothing renews automatically. When the trial ends you simply drop back to the Free plan (4 entries) unless you buy a Pro or Max license. Your saved data is never deleted.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
       What's the difference between Pro and Max?
       <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <div class="faq-answer"><strong>Pro</strong> is a one-time payment that unlocks unlimited entries for one year. <strong>Max</strong> is also a one-time payment, but the license never expires. Both include the same features.</div>
+    <div class="faq-answer"><strong>Pro</strong> is a one-time payment that unlocks unlimited entries for one year. <strong>Max</strong> is also a one-time payment, but the license never expires. Both include the same features and both start with the 30-day free trial.</div>
   </div>
 
   <div class="faq-item">
@@ -613,7 +698,7 @@
       What happens when my Pro license expires?
       <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <div class="faq-answer">Your saved entries stay exactly where they are — nothing is deleted. List get blocked but not Export Button so you can get your data by exporting record list. The Free limit of 4 active entries applies again until you renew. You can renew at any time, or upgrade to Max for a lifetime license.</div>
+    <div class="faq-answer">Your saved entries stay exactly where they are — nothing is deleted. The list gets blocked but the Export button stays active, so you can always get your records out by exporting the list. The Free limit of 4 active entries applies again until you renew. You can renew at any time, or upgrade to Max for a lifetime license.</div>
   </div>
 
   <div class="faq-item">
@@ -621,7 +706,7 @@
       Can I move my license to a new computer?
       <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <div class="faq-answer">Yes. Activation on a new computer usually just works. If you run into any issue (for example changing computer, reinstalling chrome, or after reinstalling Windows), message us on WhatsApp with your license key and we will remove license from your previous computer and you will be able to activate it on the new one.</div>
+    <div class="faq-answer">Yes. Activation on a new computer usually just works. If you run into any issue (for example changing computer, reinstalling chrome, or after reinstalling Windows), message us on WhatsApp with your license key and we will remove the license from your previous computer so you can activate it on the new one.</div>
   </div>
 
   <div class="faq-item">
@@ -629,7 +714,7 @@
       How do I pay and receive my license?
       <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <div class="faq-answer">Click <strong>Get Pro</strong> or <strong>Get Max</strong> above — it opens WhatsApp with a pre-filled message. We'll confirm payment options (bank transfer, Easypaisa / JazzCash, or card) and send your license key within a few hours.</div>
+    <div class="faq-answer">Click <strong>Start free trial</strong>, <strong>Get Pro</strong>, or <strong>Get Max</strong> above — it opens WhatsApp with a pre-filled message. We'll confirm payment options (bank transfer, Easypaisa / JazzCash, or card) and send your license key within a few hours.</div>
   </div>
 
   <div class="faq-item">
@@ -637,7 +722,7 @@
       Do you offer refunds?
       <svg class="faq-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <div class="faq-answer">If the extension doesn't work for your setup within the first 7 days of purchase, contact us on WhatsApp with a short description of the issue and we'll issue a full refund — no questions asked.</div>
+    <div class="faq-answer">The 30-day free trial lets you test everything before paying. On top of that, if the extension doesn't work for your setup within the first 7 days of purchase, contact us on WhatsApp with a short description of the issue and we'll issue a full refund — no questions asked.</div>
   </div>
 </div>
 
